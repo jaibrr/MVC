@@ -21,7 +21,7 @@ public class App {
         System.out.print("Data de checkout (dd/MM/yyy): ");
         Date checkout= sdf.parse(sc.next());
 
-        if(!checkout.after(checkin)){
+        if(!checkout.after(checkin)){ // essa validação não vai no construtor, pois o construtor não pode retornar uma string, como a validação da atualização da reserva
             System.out.println("Erro na reserva: a data de checkout deve ser posterior à data de checkin");
         } 
         else {
@@ -34,18 +34,16 @@ public class App {
             checkin = sdf.parse(sc.next());
             System.out.print("Data de checkout (dd/MM/yyy): ");
             checkout= sdf.parse(sc.next());
+            
+            String erro = reservation.updateDates(checkin, checkout);
 
-            Date now = new Date();
-            if(checkin.before(now) || checkout.before(now) ){
-                System.out.println("Erro na reserva: as datas devem ser no futuro");
-            }
-            else if (!checkout.after(checkin)){
-                System.out.println("Erro na reserva: a data de checkout deve ser posterior à data de checkin");
+            if(erro != null){
+                System.out.println("Erro na reserva: " + erro);
+
             }
             else{
-                reservation.updateDates(checkin, checkout);
                 System.out.println("Reserva: " + reservation);
-            }        
+            }
         }
 
 
