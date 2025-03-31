@@ -1,11 +1,13 @@
 package application;
 
 import java.text.ParseException;
+import java.util.InputMismatchException;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.Date;
 
 import model.entities.Reservation;
+import model.exception.DomainException;
 
 
 public class App {
@@ -41,11 +43,14 @@ public class App {
             System.out.println("Formato inválido de data");
 
         }
-        catch (IllegalArgumentException e)
+        catch (DomainException e)
         {
             System.out.println("Erro na reserva: " + e.getMessage());
         }
-        
+        catch (RuntimeException e){
+            System.out.println("Erro inesperado");
+        }
+       
     
     
         sc.close();

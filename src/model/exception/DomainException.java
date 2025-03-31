@@ -5,9 +5,11 @@ package model.exception;
 //Exception compilador te obriga a tratar
 
 public class DomainException extends Exception {
-    //é uma classe que pode ser serializada, pode trafegar na web
+    //uma classe que pode ser serializada, exige versão, pode trafegar na web, arquivos etc
     private static final long serialVerisonUID = 1L;
 
-
+    public DomainException(String msg){
+        super(msg);
+    }
 
 }
